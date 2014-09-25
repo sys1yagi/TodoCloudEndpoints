@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.sys1yagi.hellocloudendpoints.activities.TodoEditActivity">
+    <item
+            android:icon="@android:drawable/ic_menu_save"
+            android:id="@+id/action_update"
+            android:title="save"
+            android:orderInCategory="100"
+            app:showAsAction="always"/>
+</menu>
