@@ -11,7 +11,7 @@ public class ListTask extends AsyncTask<Void, Void, TodoCollection> {
     @Override
     protected TodoCollection doInBackground(Void... params) {
         try {
-            return Facade.getInstance().list().execute();
+            return ApiClient.getInstance().list().execute();
         } catch (IOException e) {
             return null;
         }

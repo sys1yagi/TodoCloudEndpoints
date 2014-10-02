@@ -88,6 +88,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String text = todoAddEdit.getText().toString();
                 if (!TextUtils.isEmpty(text)) {
+                    todoAddEdit.setText("");
                     addTodo(text);
                 }
             }

@@ -53,7 +53,6 @@ public class TodoListAdapter extends ArrayAdapter<Todo> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 todo.setChecked(isChecked);
-                updateTodo(todo);
             }
         });
         DATE.setTime(todo.getCreated());

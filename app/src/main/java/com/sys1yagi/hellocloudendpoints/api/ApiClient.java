@@ -5,7 +5,7 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import com.sys1yagi.hellocloudendpoints.api.todoApi.TodoApi;
 
-public class Facade {
+public class ApiClient {
 
     private static final TodoApi INSTANCE = getApiClient();
 
@@ -21,4 +21,5 @@ public class Facade {
                 //.setRootUrl("http://10.0.3.2:8080/_ah/api/")
                 .build();
     }
+
 }

@@ -3,6 +3,8 @@ package com.sys1yagi.hellocloudendpoints.api;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.config.Named;
+import com.google.api.server.spi.response.NotFoundException;
 
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
@@ -23,7 +25,6 @@ public class TodoEndpoint {
 
     @ApiMethod(name = "list", httpMethod = "get")
     public List<Todo> list() {
-        //TODO order by
         return ofy().load().type(Todo.class).list();
     }
 
@@ -33,15 +34,20 @@ public class TodoEndpoint {
         return update(todo);
     }
 
-    @ApiMethod(name = "update", httpMethod = "post")
+    @ApiMethod(name = "update", httpMethod = "put")
     public Todo update(Todo todo) {
         todo.setUpdated(new Date().getTime());
         Key<Todo> key = ofy().save().entity(todo).now();
         return ofy().load().type(Todo.class).id(key.getId()).now();
     }
 
-    @ApiMethod(name = "delete", httpMethod = "post")
-    public void delete(Todo todo) {
+    @ApiMethod(name = "delete", httpMethod = "delete")
+    public void delete(@Named("id") long id) throws NotFoundException {
+        Todo todo = ofy().load().type(Todo.class).id(id).safe();
+        if (todo == null) {
+            throw new NotFoundException("id=" + id + " is not found");
+        }
         ofy().delete().entity(todo).now();
+
     }
 }

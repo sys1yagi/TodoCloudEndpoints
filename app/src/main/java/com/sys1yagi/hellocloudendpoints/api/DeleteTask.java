@@ -12,9 +12,10 @@ public class DeleteTask extends AsyncTask<Todo, Void, Void> {
     protected Void doInBackground(Todo... params) {
         for (Todo todo : params) {
             try {
-                Facade.getInstance().delete(todo).execute();
+                ApiClient.getInstance().delete(todo.getId()).execute();
             } catch (IOException e) {
                 //TODO
+                e.printStackTrace();
             }
         }
         return null;

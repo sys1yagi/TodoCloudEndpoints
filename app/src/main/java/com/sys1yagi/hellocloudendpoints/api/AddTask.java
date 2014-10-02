@@ -12,7 +12,7 @@ public class AddTask extends AsyncTask<Todo, Void, Todo> {
     protected Todo doInBackground(Todo... params) {
         Todo todo = params[0];
         try {
-            return Facade.getInstance().add(todo).execute();
+            return ApiClient.getInstance().add(todo).execute();
         } catch (IOException e) {
             return null;
         }
